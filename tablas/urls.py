@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import Prov
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ProveedorViewSet
+
+router = DefaultRouter()
+router.register(r'proveedores', ProveedorViewSet)
 
 urlpatterns = [
-    path('proveedores/', Prov.crear, name='crear_proveedor'),
-    path('proveedores/<int:id>/', Prov.eliminar, name='eliminar_proveedor'),
+    path('', include(router.urls)),
 ]
